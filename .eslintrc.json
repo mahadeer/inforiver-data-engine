@@ -1,0 +1,90 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "es2017": true
+    },
+    "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "plugin:powerbi-visuals/recommended" // PowerBI rule for certification
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 11,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "import",
+        "powerbi-visuals",
+        "eslint-plugin-tsdoc"
+    ],
+    "rules": {
+        "import/no-unresolved": "error",
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-shadow": "error",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".tsx"
+                ]
+            }
+        ],
+        "react/jsx-no-bind": [
+            "error",
+            {
+                "ignoreDOMComponents": true,
+                "allowArrowFunctions": true,
+                "allowFunctions": true
+            }
+        ],
+        "camelcase": "off",
+        "import/extensions": "off", // This rule force the use of file extension on import
+        "import/prefer-default-export": "off", // this helps to name things in single export files
+        "react/jsx-one-expression-per-line": "off", // Creates conflict with prettier
+        "react/jsx-indent": "off", // Creates conflict with prettier, prettier will take care of indention
+        "import/no-cycle": "off",
+        "no-return-await": "off", // arrow function export needed for code clarity
+        "no-plusplus": "off", // unary is needed in some places
+        "no-use-before-define": "off", //Shows error on React Import  https://github.com/typescript-eslint/typescript-eslint/issues/2540
+        "no-shadow": "off", // Throws error on enum declaration - @typescript-eslint/no-unused-vars is enough https://github.com/typescript-eslint/typescript-eslint/issues/2484
+        "no-param-reassign": "off", // mutation is needed in array reduce and some other essentials cases
+        "jsx-a11y/interactive-supports-focus": "off", // // Disabling it for now, this rule is to enforce accessibility
+        "jsx-a11y/click-events-have-key-events": "off", // Disabling it for now, this rule is to enforce accessibility
+        "@typescript-eslint/no-floating-promises": "off", // Disabling it since it throwing error for all store dispatch
+        "@typescript-eslint/unbound-method": "off", // unbound usage needed on some cases - need to convert those object exports to class based exports
+        "dot-notation": "off", // disabling it since it throws error for window.something
+        "class-methods-use-this": "off",
+        "react/jsx-props-no-spreading": "off", // needed for many cases, when data-attribute needs to be embeded in react elements
+        "jsx-a11y/mouse-events-have-key-events": "off", // MouseOver and MouseOut are essential in our case rather than OnFocus and OnBlur
+        "jsx-a11y/no-autofocus": "off", // auto foucs is needed for certain scenarios for improving u
+        "react/require-default-props": "off", // showing error for function component with connect
+        "react/no-unused-prop-types": "off", // usage of nested props is not being caught by lint extension host
+        "react/display-name": "off", // usage of nested props is not being caught by lint extension host
+        "tsdoc/syntax": "warn"
+    },
+    "settings": {
+        "import/parsers": {
+            "@typescript-eslint/parser": [
+                ".ts",
+                ".tsx"
+            ]
+        },
+        "import/resolver": {
+            "typescript": {
+                "project": "./tsconfig.json"
+            }
+        }
+    }
+}
