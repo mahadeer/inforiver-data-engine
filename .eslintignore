@@ -1,0 +1,9 @@
+node_modules
+scripts
+dist
+
+.eslintrc.json
+.prettierrc.json
+updateVersion.js
+webpack.config.ts
+public
